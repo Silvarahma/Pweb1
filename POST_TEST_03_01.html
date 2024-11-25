@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contoh Implementasi CSS</title>
+
+    <!-- 1. Internal CSS -->
+    <style>
+        /* Contoh Internal CSS */
+        .internal-style {
+            background-color: #f0f0f0;
+            padding: 20px;
+            margin: 20px;
+            border: 2px solid #666;
+            border-radius: 10px;
+        }
+
+        .internal-heading {
+            color: #2c3e50;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .internal-text {
+            color: #34495e;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+    </style>
+
+    <!-- 2. External CSS (biasanya di file terpisah, tapi ditampilkan di sini sebagai contoh) -->
+    <style>
+        /* Ini seharusnya berada di file style.css */
+        .external-style {
+            background-color: #e8f5e9;
+            padding: 20px;
+            margin: 20px;
+            border: 2px solid #4caf50;
+            border-radius: 10px;
+        }
+
+        .external-heading {
+            color: #1b5e20;
+            font-family: 'Helvetica', sans-serif;
+            text-align: center;
+        }
+
+        .external-text {
+            color: #2e7d32;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center; color: #333; margin: 20px 0;">Tiga Cara Menulis CSS</h1>
+
+    <!-- 1. Inline CSS -->
+    <div style="background-color: #ffebee; padding: 20px; margin: 20px; border: 2px solid #ef5350; border-radius: 10px;">
+        <h2 style="color: #c62828; font-family: 'Verdana', sans-serif; text-align: center;">1. Inline CSS</h2>
+        <p style="color: #b71c1c; line-height: 1.6; font-size: 16px;">
+            Ini adalah contoh penggunaan inline CSS. CSS ditulis langsung di dalam atribut 'style' pada elemen HTML.
+            Meskipun mudah diterapkan untuk perubahan cepat tetapi cara ini juga memiliki beberapa kekurangan yaitu:
+            <br>- Sulit untuk dikelola
+            <br>- Tidak dapat digunakan ulang
+            <br>- Mencampur konten dengan styling
+        </p>
+    </div>
+
+    <!-- 2. Internal CSS -->
+    <div class="internal-style">
+        <h2 class="internal-heading">2. Internal CSS</h2>
+        <p class="internal-text">
+            Ini adalah contoh penggunaan internal CSS. CSS ditulis di dalam tag style di bagian head dokumen HTML.
+            Keuntungannya:
+            <br>- Tidak perlu file eksternal
+            <br>- Styles terisolasi untuk satu halaman
+            <br>- Bisa digunakan ulang dalam satu halaman
+        </p>
+    </div>
+
+    <!-- 3. External CSS -->
+    <div class="external-style">
+        <h2 class="external-heading">3. External CSS</h2>
+        <p class="external-text">
+            Ini adalah contoh penggunaan external CSS. Biasanya CSS ditulis dalam file terpisah dan di-link ke HTML.
+            Keuntungannya:
+            <br>- File CSS bisa digunakan untuk banyak halaman
+            <br>- Pemeliharaan lebih mudah
+            <br>- File lebih terorganisir
+            <br>- Cache browser lebih efektif
+        </p>
+    </div>
+
+    <!-- Penjelasan tambahan -->
+    <div style="margin: 20px; padding: 20px; background-color: #e3f2fd; border-radius: 10px;">
+        <h3 style="color: #1565c0; text-align: center;">Cara Menghubungkan External CSS</h3>
+        <pre style="background-color: #fff; padding: 10px; border-radius: 5px;">
+            &lt;link rel="stylesheet" type="text/css" href="style.css"&gt;
+        </pre>
+        <p style="color: #0d47a1;">
+            Baris kode di atas biasanya ditempatkan di dalam tag &lt;head&gt; untuk menghubungkan file CSS eksternal.
+        </p>
+    </div>
+</body>
+</html>
