@@ -1,0 +1,120 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #e0f7fa; 
+    color: #004d40; 
+}
+
+header {
+    background-color: #00796b;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 5px;
+    font-size: 24px;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+}
+
+nav ol {
+    display: inline;
+    margin: 10px;
+}
+
+nav ol a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav ol a:hover {
+    color: #b2dfdb; 
+    text-decoration: underline;
+}
+
+main {
+    padding: 20px;
+}
+
+h3, h1 {
+    color: #004d40;
+}
+
+img {
+    border-radius: 10px;
+    margin: 10px 0;
+    border: 3px solid #004d40;
+}
+
+table {
+    width: 70%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: #ffffff;
+}
+
+table, th, td {
+    border: 1px solid #004d40;
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #004d40;
+    color: white;
+}
+
+td {
+    color: #004d40;
+}
+
+#Kontak {
+    padding: 10px;
+    background-color: #b2dfdb;
+    margin-top: 20px;
+    text-align: center;
+}
+
+#Kontak h3 {
+    color: #004d40;
+}
+
+a {
+    color: #00796b;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #004d40;
+    text-decoration: underline;
+}
+
+/* Footer styling */
+footer {
+    background-color: #00796b;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+@media screen and (max-width: 600px) {
+    table {
+        width: 100%;
+    }
+
+    nav ol {
+        display: block;
+        margin: 5px 0;
+    }
+}
