@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="Tugas.css">
+</head>
+<body>
+    <font size="7" face="sans-serif">Fakultas Ilmu Komputer</font> <br>
+    <font size="5" color="blue">Universitas Kuningan</font> <br>
+    <font size="3">
+        Alamat: Jl.Pramuka No.67, Purwawinangun, Kec. Kuningan, Kabupaten Kuningan, Jawa Barat 45512
+    </font>
+    <hr size="3">
+
+    <!-- Input pencarian alumni -->
+    <input type="text" id="searchInput" class="search-box" onkeyup="searchAlumni()" placeholder="Cari alumni berdasarkan nama atau jurusan...">
+
+    <table border="1">
+        <caption><strong>DAFTAR DOSEN</strong></caption>
+        <tr>
+            <th>No.</th>
+            <th>Nama</th>
+            <th>Homebase</th>
+            <th>Rumpun Keilmuan</th>
+        </tr>
+        <tr>
+            <td align="right">1.</td>
+            <td>Tito Sugiharto, M.Eng.</td>
+            <td>Teknik Informatika</td>
+            <td>Computer Engineering</td>
+        </tr>
+        <tr>
+            <td align="right">2.</td>
+            <td>Erik Kurniadi, M.Kom.</td>
+            <td>Sistem Informasi</td>
+            <td>Information System</td>
+        </tr>
+        <tr>
+            <td align="right">3.</td>
+            <td>Jerry D. Rahajaan, M.Sn.</td>
+            <td>Desain Komunikasi Visual</td>
+            <td>Seni, Desain, & Media</td>
+        </tr>
+        <tr>
+            <td align="right">4.</td>
+            <td>Panji Novantara, M.T.</td>
+            <td>Teknik Informatika</td>
+            <td>Computer Science</td>
+        </tr>
+        <tr>
+            <td align="right">5.</td>
+            <td>Panji Novantara, M.T.</td>
+            <td>Teknik Informatika</td>
+            <td>Teknik Sipil</td>
+        </tr>
+    </table>
+
+    <script>
+        // Fungsi untuk memfilter alumni berdasarkan nama atau jurusan
+        function searchAlumni() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById('searchInput');
+            filter = input.value.toLowerCase();
+            table = document.querySelector('table');
+            tr = table.getElementsByTagName('tr');
+
+            // Iterasi setiap baris dalam tabel
+            for (i = 1; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName('td');
+                let matchFound = false;
+
+                // Periksa nama dan jurusan pada setiap baris
+                for (let j = 1; j < td.length; j++) {
+                    txtValue = td[j].textContent || td[j].innerText;
+                    if (txtValue.toLowerCase().indexOf(filter) > -1) {
+                        matchFound = true;
+                        break;
+                    }
+                }
+
+                // Tampilkan atau sembunyikan baris berdasarkan pencarian
+                if (matchFound) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+</body>
+</html>

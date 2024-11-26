@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contoh Scope</title>
+    <script>
+        // Variabel di global scope
+        var globalVar = "Saya berada di global scope";
+
+        function tesScope() {
+            // Variabel di local scope
+            var localVar = "Saya berada di local scope";
+            console.log(localVar); // Bisa diakses di dalam fungsi
+        }
+
+        // Memanggil fungsi tesScope untuk menampilkan localVar
+        tesScope();
+        console.log(globalVar); // Bisa mengakses globalVar karena berada di global scope
+        // console.log(localVar); // Error: localVar is not defined
+    </script>
+</head>
+
+<body>
+    <h1>Contoh Global Scope dan Local Scope</h1>
+</body>
+
+</html>

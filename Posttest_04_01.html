@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perbedaan var, let, dan const</title>
+  <script>
+    function testScope() {
+      // VAR: Function scoped, tidak block scoped
+      if (true) {
+        var varVariable = "Saya var";
+      }
+      console.log("VAR:", varVariable); // Masih dapat diakses di sini
+
+      // LET: Block scoped
+      if (true) {
+        let letVariable = "Saya let";
+        console.log("LET (di dalam blok):", letVariable); // Bisa diakses
+      }
+      // console.log("LET:", letVariable); // Error: letVariable is not defined
+
+      // CONST: Block scoped
+      if (true) {
+        const constVariable = "Saya const";
+        console.log("CONST (di dalam blok):", constVariable); // Bisa diakses
+      }
+      // console.log("CONST:", constVariable); // Error: constVariable is not defined
+
+      // Contoh perubahan nilai
+      let letNumber = 10;
+      letNumber = 20; // Boleh
+
+      const constNumber = 10;
+      // constNumber = 20; // Error: Assignment to constant variable
+
+      const constArray = [1, 2, 3];
+      constArray.push(4); // Boleh karena memodifikasi isi, bukan mereassign
+      console.log("CONST Array:", constArray);
+    }
+  </script>
+</head>
+<body>
+  <h1>Perbedaan var, let, dan const</h1>
+  <button onclick="testScope()">Jalankan</button>
+</body>
+</html>
