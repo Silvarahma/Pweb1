@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lowongan Kerja CRUD</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Lowongan Kerja</h2>
+
+        <!-- Form for CRUD Operations -->
+        <form id="jobForm" class="mb-4">
+            <div class="form-group">
+                <label for="kode">Kode:</label>
+                <input type="text" class="form-control" id="kode" required>
+            </div>
+            <div class="form-group">
+                <label for="posisi">Posisi:</label>
+                <input type="text" class="form-control" id="posisi" required>
+            </div>
+            <div class="form-group">
+                <label for="perusahaan">Perusahaan:</label>
+                <input type="text" class="form-control" id="perusahaan" required>
+            </div>
+            <div class="form-group">
+                <label for="lokasi">Lokasi:</label>
+                <input type="text" class="form-control" id="lokasi" required>
+            </div>
+            <div class="form-group">
+                <label for="deskripsi">Deskripsi:</label>
+                <textarea class="form-control" id="deskripsi" rows="3" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" id="submitBtn">Add Job</button>
+        </form>
+
+        <!-- Table to Display Job Vacancies -->
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Kode</th>
+                    <th>Posisi</th>
+                    <th>Perusahaan</th>
+                    <th>Lokasi</th>
+                    <th>Deskripsi</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="jobTableBody">
+                <!-- Job rows will be appended here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            const scriptUrl = 'https://script.google.com/macros/s/AKfycbxsDw0vgqWf0aQPInRwUwa6PevIotMpD8sp4m7On4TapGnQkZBcBikjScOx4lId2BXV/exec'; // Replace with your Apps Script URL
+
+            // Load job vacancies on page load
+            loadJobs();
+
+            function loadJobs() {
+                $.ajax({
+                    url: scriptUrl,
+                    type: "GET",
+                    data: { action: "read" },
+                    dataType: "json",
+                    success: function (response) {
+                        const tbody = $('#jobTableBody');
+                        tbody.empty(); // Clear the table body
+                        response.forEach(job => {
+                            tbody.append(`
+                                <tr>
+                                    <td>${job.Kode}</td>
+                                    <td>${job.Posisi}</td>
+                                    <td>${job.Perusahaan}</td>
+                                    <td>${job.Lokasi}</td>
+                                    <td>${job.Deskripsi}</td>
+                                    <td>
+                                        <button class="btn btn-warning btn-sm editBtn" data-kode="${job.Kode}">Edit</button>
+                                        <button class="btn btn-danger btn-sm deleteBtn" data-kode="${job.Kode}">Delete</button>
+                                    </td>
+                                </tr>
+                            `);
+                        });
+                    },
+                    error: function (error) {
+                        console.error("Error loading jobs:", error);
+                    }
+                });
+            }
+
+            // Add or update job vacancy
+            $('#jobForm').on('submit', function (event) {
+                event.preventDefault();
+                const jobData = {
+                    kode: $('#kode').val(),
+                    posisi: $('#posisi').val(),
+                    perusahaan: $('#perusahaan').val(),
+                    lokasi: $('#lokasi').val(),
+                    deskripsi: $('#deskripsi').val(),
+                    action: 'insert'
+                };
+                $.ajax({
+                    url: scriptUrl,
+                    type: "GET",
+                    data: jobData,
+                    dataType: "jsonp",
+                    success: function (response) {
+                        alert(response.result);
+                        loadJobs();
+                    },
+                    error: function (error) {
+                        console.error("Error adding job:", error);
+                    }
+                });
+            });
+
+            // Delete job vacancy
+            $(document).on('click', '.deleteBtn', function () {
+                const kode = $(this).data('kode');
+                if (confirm("Are you sure you want to delete this job?")) {
+                    $.ajax({
+                        url: scriptUrl,
+                        type: "GET",
+                        data: { kode: kode, action: 'delete' },
+                        dataType: "jsonp",
+                        success: function (response) {
+                            alert(response.result);
+                            loadJobs();
+                        },
+                        error: function (error) {
+                            console.error("Error deleting job:", error);
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
